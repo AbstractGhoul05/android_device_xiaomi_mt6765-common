@@ -22,7 +22,7 @@ set -e
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="$(pwd)"; fi
 
-LINEAGE_ROOT="${MY_DIR}"/../../..
+AOSP_ROOT="${MY_DIR}"/../../..
 
 HELPER="${LINEAGE_ROOT}/vendor/lineage/build/tools/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
@@ -63,7 +63,7 @@ setup_vendor "${DEVICE}" "${VENDOR}" "${LINEAGE_ROOT}" true "${CLEAN_VENDOR}"
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" \
         "${KANG}" --section "${SECTION}"
 
-COMMON_BLOB_ROOT="${LINEAGE_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
+COMMON_BLOB_ROOT="${AOSP_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
 
 if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
@@ -73,6 +73,6 @@ if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
             "${KANG}" --section "${SECTION}"
 fi
 
-DEVICE_BLOB_ROOT="${LINEAGE_ROOT}/vendor/${VENDOR}/${DEVICE}/proprietary"
+DEVICE_BLOB_ROOT="${AOSP_ROOT}/vendor/${VENDOR}/${DEVICE}/proprietary"
 
 source "${MY_DIR}/setup-makefiles.sh"
